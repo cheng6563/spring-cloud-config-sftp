@@ -22,4 +22,5 @@ COPY --from=build build/libs/spring-cloud-config-sftp-1.0.0-SNAPSHOT.jar /opt/sp
 COPY --from=build /usr/java/default /opt/jdk
 
 CMD /entrypoint ${USER}:${PASSWORD}:::config-repo & \
+    chmod 777 /opt/spring-cloud-config-sftp/ && \
     exec /opt/jdk/bin/java -Xmx200m -Xms60m -XX:+ExitOnOutOfMemoryError -jar /opt/spring-cloud-config-sftp/spring-cloud-config-sftp-1.0.0-SNAPSHOT.jar
